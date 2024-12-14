@@ -1,126 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>AMApplicationBuild</key>
-	<string>526</string>
-	<key>AMApplicationVersion</key>
-	<string>2.10</string>
-	<key>AMDocumentVersion</key>
-	<string>2</string>
-	<key>actions</key>
-	<array>
-		<dict>
-			<key>action</key>
-			<dict>
-				<key>AMAccepts</key>
-				<dict>
-					<key>Container</key>
-					<string>List</string>
-					<key>Optional</key>
-					<true/>
-					<key>Types</key>
-					<array>
-						<string>com.apple.applescript.object</string>
-					</array>
-				</dict>
-				<key>AMActionVersion</key>
-				<string>1.0.2</string>
-				<key>AMApplication</key>
-				<array>
-					<string>Automator</string>
-				</array>
-				<key>AMParameterProperties</key>
-				<dict>
-					<key>source</key>
-					<dict/>
-				</dict>
-				<key>AMProvides</key>
-				<dict>
-					<key>Container</key>
-					<string>List</string>
-					<key>Types</key>
-					<array>
-						<string>com.apple.applescript.object</string>
-					</array>
-				</dict>
-				<key>ActionBundlePath</key>
-				<string>/System/Library/Automator/Run AppleScript.action</string>
-				<key>ActionName</key>
-				<string>AppleScriptを実行</string>
-				<key>ActionParameters</key>
-				<dict>
-					<key>source</key>
-					<string>--[このAppleScriptの機能説明]-- このスクリプトは、以下の操作を実行します:-- 1. Finderで選択されている項目がある場合:--    ・選択された項目の親フォルダに新規フォルダ「yourNameFolder（好きな名前に書き換えてください）」を作成します。--    ・新規フォルダ「yourNameFolder（好きな名前に書き換えてください）」の中に選択された項目を移動します。-- 2. Finderで何も選択されていない場合:--    ・アクティブなFinderウインドウのターゲットフォルダ内に新規フォルダ「yourNameFolder（好きな名前に書き換えてください）」を作成します。-- このスクリプトは、Finderの選択状態に応じて柔軟に動作します。tell application "Finder"	try		-- アクティブなFinderウインドウで選択されている項目を取得		set theSelection to selection				--"yourNameFolder（好きな名前に書き換えてください）" にお好みのフォルダ名を設定してください。		set newFolderName to "yourNameFolder（好きな名前に書き換えてください）"				if theSelection ≠ {} then			-- 何かが選択されている場合			-- 選択された項目の親フォルダを取得			set parentFolder to container of item 1 of theSelection						-- 新規フォルダを作成			set newFolder to make new folder at parentFolder with properties {name:newFolderName}						-- 選択された各項目を新しいフォルダに移動			repeat with selectedItem in theSelection				move selectedItem to newFolder			end repeat						-- 成功メッセージを表示			display dialog "新しいフォルダ '" &amp; newFolderName &amp; "' を作成し、選択した項目を内包しました。" buttons {"OK"} default button "OK"		else			-- 何も選択されていない場合			-- アクティブなFinderウインドウのターゲットフォルダを取得			set targetFolder to target of Finder window 1						-- ターゲットフォルダに新規フォルダを作成			set newFolder to make new folder at targetFolder with properties {name:newFolderName}						-- 成功メッセージを表示			display dialog "新しいフォルダ '" &amp; newFolderName &amp; "' を作成しました。" buttons {"OK"} default button "OK"		end if			on error errMsg		-- エラーハンドリング		display dialog "エラーが発生しました: " &amp; errMsg buttons {"OK"} default button "OK"	end tryend tell</string>
-				</dict>
-				<key>BundleIdentifier</key>
-				<string>com.apple.Automator.RunScript</string>
-				<key>CFBundleVersion</key>
-				<string>1.0.2</string>
-				<key>CanShowSelectedItemsWhenRun</key>
-				<false/>
-				<key>CanShowWhenRun</key>
-				<true/>
-				<key>Category</key>
-				<array>
-					<string>AMCategoryUtilities</string>
-				</array>
-				<key>Class Name</key>
-				<string>RunScriptAction</string>
-				<key>InputUUID</key>
-				<string>12DF12FE-FA71-45F1-A632-F84CAD873E80</string>
-				<key>Keywords</key>
-				<array>
-					<string>実行</string>
-				</array>
-				<key>OutputUUID</key>
-				<string>5A426C0E-C0C8-40FB-8A0E-E5AFAAD52D6B</string>
-				<key>UUID</key>
-				<string>5FDA98D8-FDE6-4A97-8BA3-11E1CB8343BF</string>
-				<key>UnlocalizedApplications</key>
-				<array>
-					<string>Automator</string>
-				</array>
-				<key>arguments</key>
-				<dict>
-					<key>0</key>
-					<dict>
-						<key>default value</key>
-						<string>on run {input, parameters}
-	
-	(* Your script goes here *)
-	
-	return input
-end run</string>
-						<key>name</key>
-						<string>source</string>
-						<key>required</key>
-						<string>0</string>
-						<key>type</key>
-						<string>0</string>
-						<key>uuid</key>
-						<string>0</string>
-					</dict>
-				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
-				<key>isViewVisible</key>
-				<integer>1</integer>
-				<key>location</key>
-				<string>355.000000:315.000000</string>
-				<key>nibPath</key>
-				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
-			</dict>
-			<key>isViewVisible</key>
-			<integer>1</integer>
-		</dict>
-	</array>
-	<key>connectors</key>
-	<dict/>
-	<key>workflowMetaData</key>
-	<dict>
-		<key>workflowTypeIdentifier</key>
-		<string>com.apple.Automator.application</string>
-	</dict>
-</dict>
-</plist>
